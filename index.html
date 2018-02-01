@@ -1,10 +1,12 @@
 <html>
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>
     The Darkness
   </title>
-  
+
   <style>
     html, body, img {
       width: 100vw;
@@ -17,28 +19,62 @@
       left: 0;
       z-index: 0;
     }
-    img:not(:first-child) {
+    img:not(:first-of-type) {
       display: none;
     }
-    input {
+    label, input {
       position: relative;
+      cursor: pointer;
       z-index: 1;
     }
     input:checked + img {
       display: block;
+    }
+    label {
+      display: inline-block;
+      width: 70px;
+    }
+    label:hover, label:hover + input, input {
+      background: #eee;
+    }
+    p {
+      position: relative;
+      margin: 0;
+      z-index: 1;
     }
   </style>
 </head>
 
 <body>
   <!-- Pigment -->
+  <label for="pigment">Pigment</label>
+  <input type="radio" name="map" id="pigment" checked="checked" />
   <img src="https://i.imgur.com/Dpf9MOI.png" />
   <!-- Rape -->
-  <input type="radio" name="map" />
+  <br />
+  <label for="rape">Rape</label>
+  <input type="radio" name="map" id="rape" />
   <img src="https://i.imgur.com/DxX1yFc.png" />
   <!-- Murder -->
-  <input type="radio" name="map" />
+  <br />
+  <label for="murder">Murder</label>
+  <input type="radio" name="map" id="murder" />
   <img src="https://i.imgur.com/bRIE1QQ.png" />
+
+  <br />
+  <p>Violence Opacity:</p>
+  <input type="range" value="100" min="0" max="100" />
+
+  <script>
+    const map = document.querySelectorAll(`img:not(:first-of-type)`);
+    const opa = document.querySelector(`input[type="range"]`);
+
+    opa.addEventListener(`change`, ()=> {
+      for(const el of map) {
+        el.style.opacity = opa.value/100;
+      }
+    })
+  </script>
 </body>
 
 </html>
