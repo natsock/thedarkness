@@ -15,9 +15,13 @@
       position: absolute;
       top: 0;
       left: 0;
+      z-index: 0;
     }
     img:not(:first) {
       display: none;
+    }
+    input {
+      z-index: 1;
     }
     input:checked + img {
       display: block;
